@@ -17,10 +17,9 @@ class CreatePhonesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('phonebook_id');
             $table->foreign('phonebook_id')
-                ->references('id')->on('phonebooks')
+                ->references('id')->on('phone_books')
                 ->onDelete('cascade');
             $table->string('phone');
-            $table->boolean('main')->default(0)->change();
             $table->timestamps();
         });
     }
