@@ -5,6 +5,7 @@ use App\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
   
+//php artisan db:seed --class=CreateAdminUserSeeder
 class CreateAdminUserSeeder extends Seeder
 {
     /**

@@ -4,7 +4,7 @@
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
-
+//php artisan db:seed --class=PermissionTableSeeder
 class PermissionTableSeeder extends Seeder
 {
     /**
