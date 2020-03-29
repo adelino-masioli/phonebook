@@ -7,20 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Phone extends Model
 {
     protected $fillable = [
-        'phonebook_id', 'phone'
+        'contact_id', 'phone'
     ];
 
-    public function phone_book()
+    public function contact()
     {
-        return $this->belongsTo('App\PhoneBook');
+        return $this->belongsTo('App\Contact');
     }
 
-    public static function create_phone($phones, $phone_book){
-        $delete = Phone::where('phonebook_id', $phone_book->id);
+    public static function create_phone($phones, $contact){
+        $delete = Phone::where('contact_id', $contact->id);
         $delete->delete();
         
         foreach ($phones as $phone) {
-            $phone_['phonebook_id'] = $phone_book->id;
+            $phone_['contact_id'] = $contact->id;
             $phone_['phone']        = $phone;
             $phone_['main']         = 0;
             

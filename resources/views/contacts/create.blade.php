@@ -8,7 +8,7 @@
                 <h2>Add New Contact</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('phonebooks.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -26,10 +26,8 @@
     @endif
 
 
-    <form action="{{ route('phonebooks.store') }}" method="POST">
+    <form action="{{ route('contacts.store') }}" method="POST">
     	@csrf
-
-
          <div class="row">
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">

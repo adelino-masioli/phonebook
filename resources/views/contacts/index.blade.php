@@ -8,8 +8,8 @@
                 <h2>Contacts</h2>
             </div>
             <div class="pull-right">
-                @can('phonebook-create')
-                <a class="btn btn-success" href="{{ route('phonebooks.create') }}"> Create New Contact</a>
+                @can('contact-create')
+                <a class="btn btn-success" href="{{ route('contacts.create') }}"> Create New Contact</a>
                 @endcan
             </div>
         </div>
@@ -31,23 +31,23 @@
             <th>Phone</th>
             <th>Action</th>
         </tr>
-	    @foreach ($phonebooks as $phonebook)
+	    @foreach ($contacts as $contact)
 	    <tr>
-	        <td>{{ $phonebook->id }}</td>
-	        <td>{{ $phonebook->name }}</td>
-	        <td>{{ $phonebook->email }}</td>
-	        <td>{{ $phonebook->get_first_phone($phonebook->id) }}</td>
+	        <td>{{ $contact->id }}</td>
+	        <td>{{ $contact->name }}</td>
+	        <td>{{ $contact->email }}</td>
+	        <td>{{ $contact->get_first_phone($contact->id) }}</td>
 	        <td>
-                <form action="{{ route('phonebooks.destroy',$phonebook->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('phonebooks.show',$phonebook->id) }}">Show</a>
-                    @can('phonebook-edit')
-                    <a class="btn btn-primary" href="{{ route('phonebooks.edit',$phonebook->id) }}">Edit</a>
+                <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST">
+                    <a class="btn btn-info" href="{{ route('contacts.show',$contact->id) }}">Show</a>
+                    @can('contact-edit')
+                    <a class="btn btn-primary" href="{{ route('contacts.edit',$contact->id) }}">Edit</a>
                     @endcan
 
 
                     @csrf
                     @method('DELETE')
-                    @can('phonebook-delete')
+                    @can('contact-delete')
                     <button type="submit" class="btn btn-danger">Delete</button>
                     @endcan
                 </form>
@@ -57,7 +57,7 @@
     </table>
 
 
-    {!! $phonebooks->links() !!}
+    {!! $contacts->links() !!}
 
 
 <p class="text-center text-primary"><small>{{define_footer()}}</small></p>

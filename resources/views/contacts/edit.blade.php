@@ -8,7 +8,7 @@
                 <h2>Edit Contact</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('phonebooks.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
     @endif
 
 
-    <form action="{{ route('phonebooks.update',$phonebook->id) }}" method="POST">
+    <form action="{{ route('contacts.update',$contact->id) }}" method="POST">
     	@csrf
         @method('PUT')
 
@@ -35,13 +35,13 @@
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
 		            <strong>Name:</strong>
-		            <input type="text" name="name" value="{{ $phonebook->name }}" class="form-control" placeholder="Name">
+		            <input type="text" name="name" value="{{ $contact->name }}" class="form-control" placeholder="Name">
 		        </div>
 		    </div>
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
                     <strong>Email:</strong>
-                    <input type="email" name="email" class="form-control" placeholder="Email" value="{{ $phonebook->email }}">
+                    <input type="email" name="email" class="form-control" placeholder="Email" value="{{ $contact->email }}">
 		        </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -50,13 +50,13 @@
                     <div class="field_wrapper">
 
                         <div class="input-group input-group-sm mb-3">
-                            <input type="text" class="form-control" name="phone[]" placeholder="Phone number" value="{{ $phonebook->get_first_phone($phonebook->id) }}">
+                            <input type="text" class="form-control" name="phone[]" placeholder="Phone number" value="{{ $contact->get_first_phone($contact->id) }}">
                             <div class="input-group-prepend">
                                 <span class="input-group-text add_button">[+]</span>
                             </div>
                         </div>
 
-                        @foreach ($phonebook->get_all_phones($phonebook->id) as $phone)
+                        @foreach ($contact->get_all_phones($contact->id, null) as $phone)
                             <div class="input-group input-group-sm mb-3">
                                 <input type="text" class="form-control" name="phone[]" placeholder="Phone number" value="{{ $phone->phone }}">
                                 <div class="input-group-prepend">

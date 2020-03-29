@@ -4,13 +4,13 @@
 namespace App\Http\Controllers;
 
 
-use App\PhoneBook;
+use App\Contact;
 use App\Phone;
 use App\Services\LogService;
 use Illuminate\Http\Request;
 
 
-class PhoneBookController extends Controller
+class ContactController extends Controller
 { 
     /**
      * Display a listing of the resource.
@@ -19,10 +19,10 @@ class PhoneBookController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:phonebook-list|phonebook-create|phonebook-edit|phonebook-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:phonebook-create', ['only' => ['create','store']]);
-         $this->middleware('permission:phonebook-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:phonebook-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:contact-list|contact-create|contact-edit|contact-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:contact-create', ['only' => ['create','store']]);
+         $this->middleware('permission:contact-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:contact-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -31,9 +31,9 @@ class PhoneBookController extends Controller
      */
     public function index()
     {
-        $phonebooks = PhoneBook::latest()->paginate(5);
+        $contacts = Contact::latest()->paginate(5);
         LogService::log(30, 'select', 'list all contacts');
-        return view('phonebooks.index',compact('phonebooks'))
+        return view('contacts.index',compact('contacts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -46,7 +46,7 @@ class PhoneBookController extends Controller
     public function create()
     {
         LogService::log(30, 'create', 'form create new contact');
-        return view('phonebooks.create');
+        return view('contacts.create');
     }
 
 
@@ -64,17 +64,17 @@ class PhoneBookController extends Controller
         ]);
 
 
-        $phone_book = PhoneBook::create($request->all());
+       $contact = Contact::create($request->all());
 
 
-        if($phone_book->save()){
+        if($contact->save()){
             $phones = $request->phone;
-            Phone::create_phone($phones, $phone_book);
+            Phone::create_phone($phones,$contact);
         }
 
-        LogService::log(0, 'store', 'save new contact and phones of <b>' . $phone_book->name.'</b>');
+        LogService::log(0, 'store', 'save new contact and phones of <b>' .$contact->name.'</b>');
 
-        return redirect()->route('phonebooks.index')
+        return redirect()->route('contacts.index')
                         ->with('success','Contact created successfully.');
     }
 
@@ -82,26 +82,26 @@ class PhoneBookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PhoneBook  $phonebook
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(PhoneBook $phonebook)
+    public function show(Contact $contact)
     {
-        LogService::log(30, 'show', 'show contact detail and phones of <b>' . $phonebook->name.'</b>');
-        return view('phonebooks.show',compact('phonebook'));
+        LogService::log(30, 'show', 'show contact detail and phones of <b>' . $contact->name.'</b>');
+        return view('contacts.show',compact('contact'));
     }
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PhoneBook  $phonebook
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(PhoneBook $phonebook)
+    public function edit(Contact $contact)
     {
-        LogService::log(30, 'edit', 'form edit contact and phones of <b>' . $phonebook->name.'</b>');
-        return view('phonebooks.edit',compact('phonebook'));
+        LogService::log(30, 'edit', 'form edit contact and phones of <b>' . $contact->name.'</b>');
+        return view('contacts.edit',compact('contact'));
     }
 
 
@@ -109,10 +109,10 @@ class PhoneBookController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PhoneBook  $phonebook
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PhoneBook $phonebook)
+    public function update(Request $request, Contact $contact)
     {
          request()->validate([
             'name' => 'required',
@@ -120,14 +120,14 @@ class PhoneBookController extends Controller
         ]);
 
 
-        $phonebook->update($request->all());
+        $contact->update($request->all());
 
         $phones = $request->phone;
-        Phone::create_phone($phones, $phonebook);
+        Phone::create_phone($phones, $contact);
 
-        LogService::log(0, 'update', 'update contact and phones of <b>' . $phonebook->name.'</b>');
+        LogService::log(0, 'update', 'update contact and phones of <b>' . $contact->name.'</b>');
 
-        return redirect()->route('phonebooks.index')
+        return redirect()->route('contacts.index')
                         ->with('success','Contact updated successfully');
     }
 
@@ -135,16 +135,16 @@ class PhoneBookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PhoneBook  $phonebook
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PhoneBook $phonebook)
+    public function destroy(Contact $contact)
     {
-        $phonebook->delete();
+        $contact->delete();
 
-        LogService::log(0, 'delete', 'destroy contact and phones of <b>' . $phonebook->name.'</b>');
+        LogService::log(0, 'delete', 'destroy contact and phones of <b>' . $contact->name.'</b>');
 
-        return redirect()->route('phonebooks.index')
+        return redirect()->route('contacts.index')
                         ->with('success','Contact deleted successfully');
     }
 }

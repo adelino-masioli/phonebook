@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhoneBooksTable extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePhoneBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('phone_books', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email');
@@ -28,6 +28,6 @@ class CreatePhoneBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phone_books');
+        Schema::dropIfExists('contacts');
     }
 }

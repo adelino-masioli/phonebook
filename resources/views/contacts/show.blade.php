@@ -8,7 +8,7 @@
                 <h2> Show Contact</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('phonebooks.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -18,13 +18,22 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                {{ $phonebook->name }}
+                {{ $contact->name }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>
-                {{ $phonebook->email }}
+                {{ $contact->email }}
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Phone(s):</strong>
+                @foreach ($contact->get_all_phones($contact->id, true) as $phone)
+                    <p>{{ $phone->phone }}</p>
+                @endforeach
             </div>
         </div>
     </div>
