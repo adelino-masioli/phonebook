@@ -25,14 +25,15 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
+            <th>ID</th>
+            <th>Name</th>
             <th>Email</th>
-            <th>Details</th>
-            <th width="280px">Action</th>
+            <th>Phone</th>
+            <th>Action</th>
         </tr>
 	    @foreach ($phonebooks as $phonebook)
 	    <tr>
-	        <td>{{ ++$i }}</td>
+	        <td>{{ $phonebook->id }}</td>
 	        <td>{{ $phonebook->name }}</td>
 	        <td>{{ $phonebook->email }}</td>
 	        <td>{{ $phonebook->get_first_phone($phonebook->id) }}</td>

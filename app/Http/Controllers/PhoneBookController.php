@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\PhoneBook;
 use App\Phone;
+use App\Services\LogService;
 use Illuminate\Http\Request;
 
 
@@ -31,6 +32,7 @@ class PhoneBookController extends Controller
     public function index()
     {
         $phonebooks = PhoneBook::latest()->paginate(5);
+        LogService::log(30, 'select', 'list all contacts');
         return view('phonebooks.index',compact('phonebooks'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -43,6 +45,7 @@ class PhoneBookController extends Controller
      */
     public function create()
     {
+        LogService::log(30, 'create', 'form create new contact');
         return view('phonebooks.create');
     }
 
@@ -69,6 +72,8 @@ class PhoneBookController extends Controller
             Phone::create_phone($phones, $phone_book);
         }
 
+        LogService::log(0, 'store', 'save new contact and phones of <b>' . $phone_book->name.'</b>');
+
         return redirect()->route('phonebooks.index')
                         ->with('success','Contact created successfully.');
     }
@@ -82,6 +87,7 @@ class PhoneBookController extends Controller
      */
     public function show(PhoneBook $phonebook)
     {
+        LogService::log(30, 'show', 'show contact detail and phones of <b>' . $phonebook->name.'</b>');
         return view('phonebooks.show',compact('phonebook'));
     }
 
@@ -94,6 +100,7 @@ class PhoneBookController extends Controller
      */
     public function edit(PhoneBook $phonebook)
     {
+        LogService::log(30, 'edit', 'form edit contact and phones of <b>' . $phonebook->name.'</b>');
         return view('phonebooks.edit',compact('phonebook'));
     }
 
@@ -118,6 +125,8 @@ class PhoneBookController extends Controller
         $phones = $request->phone;
         Phone::create_phone($phones, $phonebook);
 
+        LogService::log(0, 'update', 'update contact and phones of <b>' . $phonebook->name.'</b>');
+
         return redirect()->route('phonebooks.index')
                         ->with('success','Contact updated successfully');
     }
@@ -133,6 +142,7 @@ class PhoneBookController extends Controller
     {
         $phonebook->delete();
 
+        LogService::log(0, 'delete', 'destroy contact and phones of <b>' . $phonebook->name.'</b>');
 
         return redirect()->route('phonebooks.index')
                         ->with('success','Contact deleted successfully');
