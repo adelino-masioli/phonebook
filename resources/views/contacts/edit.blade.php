@@ -50,7 +50,12 @@
                     <div class="field_wrapper">
 
                         <div class="input-group input-group-sm mb-3">
-                            <input type="text" class="form-control" name="phone[]" placeholder="Phone number" value="{{ $contact->get_first_phone($contact->id) }}">
+                            <select class="custom-select" id="inputGroupSelect01" name="phone[1][type]">
+                                <option value="1" @if($contact->get_first_phone($contact->id)['type'] == 1) selected @endif >Phone</option>
+                                <option value="2" @if($contact->get_first_phone($contact->id)['type'] == 2) selected @endif >WhatsApp</option>
+                            </select>
+
+                            <input type="text" class="form-control" name="phone[1][phone]" placeholder="Phone number" value="{{ $contact->get_first_phone($contact->id)['phone'] }}">
                             <div class="input-group-prepend">
                                 <span class="input-group-text add_button">[+]</span>
                             </div>
@@ -58,7 +63,12 @@
 
                         @foreach ($contact->get_all_phones($contact->id, null) as $phone)
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" class="form-control" name="phone[]" placeholder="Phone number" value="{{ $phone->phone }}">
+                                <select class="custom-select" id="inputGroupSelect01" name="phone[1][type]">
+                                    <option value="1" @if($phone->type == 1) selected @endif >Phone</option>
+                                    <option value="2" @if($phone->type == 2) selected @endif >WhatsApp</option>
+                                </select>
+
+                                <input type="text" class="form-control" name="phone[1][phone]" placeholder="Phone number" value="{{ $phone->phone }}">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text remove_button">[X]</span>
                                 </div>

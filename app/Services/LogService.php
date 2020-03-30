@@ -14,6 +14,7 @@ class LogService
       $start  = Log::select('created_at')
                     ->where('user_id', $user_id)
                     ->where('action', $action)
+                    ->where('description', $description)
                     ->orderby('id', 'desc');
       $end    = Carbon::now();
 

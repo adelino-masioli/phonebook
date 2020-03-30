@@ -36,7 +36,9 @@
 	        <td>{{ $contact->id }}</td>
 	        <td>{{ $contact->name }}</td>
 	        <td>{{ $contact->email }}</td>
-	        <td>{{ $contact->get_first_phone($contact->id) }}</td>
+	        <td>
+                <a href="{{href_phone($contact->get_first_phone($contact->id)['type'], $contact->get_first_phone($contact->id)['phone'])}}">{{ $contact->get_first_phone($contact->id)['phone'] }}</a>
+            </td>
 	        <td>
                 <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('contacts.show',$contact->id) }}">Show</a>

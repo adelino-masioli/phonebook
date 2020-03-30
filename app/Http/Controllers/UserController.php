@@ -8,6 +8,7 @@ use App\User;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use App\Services\LogService;
 
 class UserController extends Controller
 {
@@ -19,6 +20,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id')->paginate(5);
+        LogService::log(30, 'select', 'list all users');
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -32,6 +34,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
+        LogService::log(30, 'create', 'form create new user');
         return view('users.create',compact('roles'));
     }
 
@@ -59,6 +62,9 @@ class UserController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
+        LogService::log(0, 'store', 'save new user to <b>' .$user->name.'</b>');
+
+
 
         return redirect()->route('users.index')
                         ->with('success','User created successfully');
@@ -74,6 +80,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        LogService::log(30, 'show', 'show user <b>' .$user->name.'</b>');
+
         return view('users.show',compact('user'));
     }
 
@@ -90,6 +98,7 @@ class UserController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
+        LogService::log(30, 'edit', 'form edit user <b>' .$user->name.'</b>');
 
         return view('users.edit',compact('user','roles','userRole'));
     }
@@ -125,6 +134,9 @@ class UserController extends Controller
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
 
+        LogService::log(0, 'update', 'update user <b>' .$user->name.'</b>');
+
+
         $user->assignRole($request->input('roles'));
 
 
@@ -141,7 +153,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $user = User::find($id)->delete();
+
+        LogService::log(0, 'delete', 'destroy user <b>' .$user->name.'</b>');
+
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }

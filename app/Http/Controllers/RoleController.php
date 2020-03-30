@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
+use App\Services\LogService;
 
 
 class RoleController extends Controller
@@ -35,6 +36,8 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = Role::orderBy('id')->paginate(5);
+        LogService::log(30, 'select', 'list all roles');
+
         return view('roles.index',compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -48,6 +51,7 @@ class RoleController extends Controller
     public function create()
     {
         $permission = Permission::get();
+        LogService::log(30, 'create', 'form create roles with permissions');
         return view('roles.create',compact('permission'));
     }
 
@@ -69,6 +73,7 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
 
+        LogService::log(0, 'store', 'save new role to <b>' .$role->name.'</b>');
 
         return redirect()->route('roles.index')
                         ->with('success','Role created successfully');
@@ -85,7 +90,8 @@ class RoleController extends Controller
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
             ->where("role_has_permissions.role_id",$id)
             ->get();
-
+        
+        LogService::log(30, 'show', 'show role <b>' .$role->name.'</b>');
 
         return view('roles.show',compact('role','rolePermissions'));
     }
@@ -104,7 +110,8 @@ class RoleController extends Controller
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
-
+        
+        LogService::log(30, 'edit', 'form edit role <b>' .$role->name.'</b>');
 
         return view('roles.edit',compact('role','permission','rolePermissions'));
     }
@@ -132,6 +139,7 @@ class RoleController extends Controller
 
         $role->syncPermissions($request->input('permission'));
 
+        LogService::log(0, 'update', 'update role <b>' .$role->name.'</b>');
 
         return redirect()->route('roles.index')
                         ->with('success','Role updated successfully');
@@ -144,7 +152,10 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        DB::table("roles")->where('id',$id)->delete();
+        $role = DB::table("roles")->where('id',$id)->delete();
+
+        LogService::log(0, 'delete', 'destroy role <b>' .$role->name.'</b>');
+
         return redirect()->route('roles.index')
                         ->with('success','Role deleted successfully');
     }

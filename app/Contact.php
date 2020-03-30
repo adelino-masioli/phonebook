@@ -30,8 +30,11 @@ class Contact extends Model
     }
 
     public static function get_first_phone($contact){
-        $first_phone = Phone::where('contact_id', $contact)
-                        ->first();
-        return $first_phone['phone'];
+        $first_phone = Phone::where('contact_id', $contact);
+        if($first_phone->count() > 0){
+            return $first_phone->first();
+        }else{
+            return ['type' => null, 'phone' => null];
+        }
     }
 }

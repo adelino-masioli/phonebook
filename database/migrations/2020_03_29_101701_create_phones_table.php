@@ -20,6 +20,7 @@ class CreatePhonesTable extends Migration
                 ->references('id')->on('contacts')
                 ->onDelete('cascade');
             $table->string('phone');
+            $table->integer('type');
             $table->timestamps();
         });
     }

@@ -46,7 +46,12 @@
                     <strong>Phone:</strong>
                     <div class="field_wrapper">
                         <div class="input-group input-group-sm mb-3">
-                            <input type="text" class="form-control" name="phone[]" placeholder="Phone number">
+                            <select class="custom-select" id="inputGroupSelect01" name="phone[1][type]">
+                                <option value="1">Phone</option>
+                                <option value="2">WhatsApp</option>
+                            </select>
+
+                            <input type="text" class="form-control" name="phone[1][phone]" placeholder="Phone number">
                             <div class="input-group-prepend">
                                 <span class="input-group-text add_button">[+]</span>
                             </div>
