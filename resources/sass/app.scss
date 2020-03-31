@@ -5,10 +5,79 @@
 // Variables
 @import 'variables';
 
+// Variables
+@import 'login';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  outline:0;
+}
+html, body, #root{
+  height:100%;
+}
+body{
+  text-rendering:optimizeLegibility!important;
+  -webkit-font-smoothing: antialiased!important;
+  background:$body-bg;
+  color:$textcolor;
+  font-family: 'Roboto', sans-serif!important;
+}
+
+
+.form-wrapper{
+  height: 40px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: text;
+  white-space: nowrap;
+  border: 1px solid rgba(76, 87, 102, .1);
+  background: #f2f5f8;
+  padding-left: 32px;
+  position: relative;
+}
+.form-wrapper_input {
+  background: transparent;
+  border: 0;
+  cursor: text;
+  outline: none;
+  padding: 0;
+  width: calc(100% - 8px);
+  line-height: 38px;
+  display: inline-block;
+  color: $inputcolor;
+}
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: -internal-light-dark-color(black, white) !important;
+}
+.form-wrapper_icon {
+  color: #a2a9b0;
+  font-size: 15px;
+  left: 10px;
+  line-height: 38px;
+  top: 0;
+  position: absolute;
+  -webkit-transition: color .2s ease;
+  transition: color .2s ease;
+}
+
+.invalid-feedback {
+  display: block;
+  width: 100%;
+  margin-top: 0.28rem;
+  font-size: 0.7rem;
+  color: $red;
+  padding-left: 18px;
+}
+.btn{
+  padding: 8px 70px 8px 70px;
+  border-radius: 3rem;
+  text-transform: uppercase;
 }

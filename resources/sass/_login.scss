@@ -1,0 +1,69 @@
+.col-left{
+  background-color: $blue;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+
+  & h1{
+    width: 80%;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 2rem;
+  }
+  & p{
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  & .btn{
+    border:1px solid #fff;
+    color: #fff;
+    margin-top: 40px;
+    transition: transform .2s;
+
+    &:hover{
+      color: #fff;
+      transform: scale(1.1);
+    }
+  }
+}
+.col-right{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  & h1{
+    width: 80%;
+    color: $blue;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 2rem;
+  }
+
+  & form{
+    width: 80%;
+  }
+
+  & .login-bottom{
+    margin-top: 40px;
+
+    & .btn-forgot-password{
+      margin-top: 40px;
+    }
+  }  
+
+  & .btn{
+    transition: transform .2s;
+
+    &:hover{
+      transform: scale(1.1);
+    }
+  }
+}
