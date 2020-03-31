@@ -28,18 +28,20 @@
     <table class="table table-bordered">
         <tr class="row m-0">
             <th class="text-center text-uppercase d-inline-block col-1">ID</th>
-            <th class="text-center text-uppercase d-inline-block col-3">Name</th>
+            <th class="text-center text-uppercase d-inline-block col-4">Name</th>
             <th class="text-center text-uppercase d-inline-block col-3">Email</th>
-            <th class="text-center text-uppercase d-inline-block col-3">Phone</th>
+            <th class="text-center text-uppercase d-inline-block col-2">Phone</th>
             <th class="text-center text-uppercase d-inline-block col-2 actions">Actions</th>
         </tr>
 	    @foreach ($contacts as $contact)
 	    <tr class="row m-0">
 	        <td class="text-center d-inline-block col-1">{{ $contact->id }}</td>
-	        <td class="d-inline-block col-3">{{ $contact->name }}</td>
+	        <td class="d-inline-block col-4">{{ $contact->name }}</td>
 	        <td class="d-inline-block col-3">{{ $contact->email }}</td>
-	        <td class="d-inline-block col-3">
-                <a href="{{href_phone($contact->get_first_phone($contact->id)['type'], $contact->get_first_phone($contact->id)['phone'])}}">{{ $contact->get_first_phone($contact->id)['phone'] }}</a>
+	        <td class="d-inline-block col-2">
+                <a href="{{href_phone($contact->get_first_phone($contact->id)['type'], $contact->get_first_phone($contact->id)['phone'])}}" target="_blank">
+                    {!!icon_phone($contact->get_first_phone($contact->id)['type'])!!} {{ $contact->get_first_phone($contact->id)['phone'] }}
+                </a>
             </td>
 	        <td class="d-inline-block col-2 actions">
             <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST" id="form-delete{{$contact->id}}">

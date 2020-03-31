@@ -16,3 +16,13 @@
        }
     }
   }
+  if (! function_exists('icon_phone')) {
+   function icon_phone($type)
+   {
+      if($type == 2){
+         return '<i class="fab fa-whatsapp text-success"></i>';
+      }else{
+         return '<i class="fas fa-phone-volume text-secondary"></i>';
+      }
+   }
+ }

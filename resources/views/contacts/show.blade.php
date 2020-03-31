@@ -31,8 +31,8 @@
                 <strong>Phone(s):</strong>
                 <p>
                 @foreach ($contact->get_all_phones($contact->id, true) as $phone)
-                    <a href="{{href_phone($phone->type, $phone->phone)}}">
-                        {{ $phone->phone }}
+                    <a href="{{href_phone($phone->type, $phone->phone)}}" target="_blank">
+                        {!!icon_phone($phone->type)!!} {{ $phone->phone }}
                     </a><br/>
                 @endforeach
                 </p>
