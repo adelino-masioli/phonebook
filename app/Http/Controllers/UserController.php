@@ -153,9 +153,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id)->delete();
+        $user = User::find($id);
+        
+            LogService::log(0, 'delete', 'destroy user <b>' .$user->name.'</b>');
 
-        LogService::log(0, 'delete', 'destroy user <b>' .$user->name.'</b>');
+        $user->delete();
 
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');

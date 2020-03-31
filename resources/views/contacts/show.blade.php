@@ -2,41 +2,43 @@
 
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2> Show Contact</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
-            </div>
-        </div>
-    </div>
+    @include('layouts/page_header', 
+        ['title' => 'Show Contact: <strong>'.$contact->name.'</strong>', 
+        'link' => route('contacts.index'), 
+        'link_title' => 'Back',
+        'icon' => 'fas fa-long-arrow-alt-left'])
+
+    @include('layouts/error')
+    @include('layouts/success')
 
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                {{ $contact->name }}
+                <p>{{ $contact->name }}</p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>
-                {{ $contact->email }}
+                <p>{{ $contact->email }}</p>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Phone(s):</strong>
+                <p>
                 @foreach ($contact->get_all_phones($contact->id, true) as $phone)
-                    <p>{{ $phone->phone }}</p>
+                    <a href="{{href_phone($phone->type, $phone->phone)}}">
+                        {{ $phone->phone }}
+                    </a><br/>
                 @endforeach
+                </p>
             </div>
         </div>
     </div>
 
-    <p class="text-center text-primary"><small>{{define_footer()}}</small></p>
+    @include('layouts/copying')
 @endsection

@@ -1,0 +1,107 @@
+.navbar-blue{
+  background-color: $blue;
+  padding: 1rem 1rem!important;
+
+  & a{
+    color: #fff;
+    padding: 0rem;
+
+    &:hover{
+      color: #fff;
+    }
+    & span{
+      position: relative;
+      top: 2px;
+      font-size: 16px;;
+    }
+  }
+
+  a.logout{
+    color: $cyan;
+    &:hover{
+      color: #fff;
+    }
+  }
+}
+.navbar-brand{
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1.325rem;
+  padding-top: 0rem;
+  padding-bottom: 20rem;
+
+  & span{
+    position: relative;
+    top: 8px;
+  }
+}
+.dashboard{
+  background-color: #fff;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.32);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.32);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.32);
+  padding: 30px 20px 20px 20px;
+
+  & .title{
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+    font-weight: 300;
+    font-size: 2rem;
+  }
+}
+
+.btn{
+  padding: 8px 40px 8px 40px;
+  border-radius: 3rem;
+  text-transform: uppercase;
+}
+
+.table{
+  & th{
+    font-weight: 400;
+  }
+  & .actions{
+    text-align: center;
+    & a{
+      margin:0px 5px;
+      display: inline-block;
+    }
+    & form{
+      margin:0px 5px;
+      display: inline-block;
+    }
+  }
+}
+
+.copying-right{
+  margin-top: 20px;
+}
+
+.form-group{
+  & strong{
+    font-weight: 400;
+  }
+}
+
+.btn-save{
+  margin-top: 20px;
+}
+
+.alert {
+  border-radius: 0rem;
+  font-weight: 400;
+  & ul{
+    list-style: none;
+    margin-bottom: 0px;
+  }
+
+  & p{
+    margin-bottom: 0px;
+  }
+}
+
+
+.disabled{
+  opacity: 0.4;
+}

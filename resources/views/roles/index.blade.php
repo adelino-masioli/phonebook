@@ -2,63 +2,60 @@
 
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Role Management</h2>
-        </div>
-        <div class="pull-right">
-        @can('role-create')
-            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
-            @endcan
-        </div>
-    </div>
-</div>
 
+@include('layouts/page_header', 
+        ['title' => 'Role Management', 
+        'link' => route('roles.create'), 
+        'link_title' => 'Create New Role',
+        'icon' => 'fas fa-plus'])
 
-@if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-@endif
+@include('layouts/error')
+@include('layouts/success')
 
 
 <table class="table table-bordered">
-  <tr>
-     <th>ID</th>
-     <th>Name</th>
-     <th width="280px">Action</th>
-  </tr>
+    <thead>
+        <tr class="row m-0">
+            <th class="text-center text-uppercase d-inline-block col-1">ID</th>
+            <th class="text-center text-uppercase d-inline-block col-9">Name</th>
+            <th class="text-center text-uppercase d-inline-block col-2 actions">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
     @foreach ($roles as $key => $role)
-    <tr>
-        <td>{{ $role->id }}</td>
-        <td>{{ $role->name }}</td>
-        <td>
-            <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
+    <tr class="row m-0">
+        <td class="d-inline-block col-1">{{ $role->id }}</td>
+        <td class="d-inline-block col-9">{{ $role->name }}</td>
+        <td class="d-inline-block col-2 actions">
+            <a class="text-secondary" href="{{ route('roles.show',$role->id) }}"><i class="fas fa-search"></i></a>
             @can('role-edit')
-                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                <a class="text-secondary" href="{{ route('roles.edit',$role->id) }}"><i class="fas fa-pen"></i></a>
             @endcan
             @if($role->id  != 1)
                 @can('role-delete')
-                    {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'id'=>'form-delete'.$role->id]) !!}
+                     <a class="text-danger" href="javascript:void(0)" onclick="$('#form-delete{{$role->id}}').submit();">
+                        <i class="fas fa-trash"></i>
+                      </a>
                     {!! Form::close() !!}
                 @endcan
             @else
                 @can('role-delete')
-                    {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'disabled']) !!}
-                    {!! Form::close() !!}
+                      <a class="text-danger disabled" href="javascript:void(0)">
+                        <i class="fas fa-ban"></i>
+                      </a>
                 @endcan
             @endif
         </td>
     </tr>
     @endforeach
+    </tbody>
 </table>
 
 
 {!! $roles->render() !!}
 
 
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
+@include('layouts/copying')
+
 @endsection

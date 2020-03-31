@@ -5,9 +5,6 @@
 // Variables
 @import 'variables';
 
-// Variables
-@import 'login';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -76,8 +73,11 @@ input:-internal-autofill-selected {
   color: $red;
   padding-left: 18px;
 }
-.btn{
-  padding: 8px 70px 8px 70px;
-  border-radius: 3rem;
-  text-transform: uppercase;
-}
+
+a{transition: color 1s;}
+
+// Login page
+@import 'login';
+
+//Dashboad
+@import 'dashboard';

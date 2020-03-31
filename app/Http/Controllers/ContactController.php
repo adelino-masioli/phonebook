@@ -29,11 +29,21 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $contacts = Contact::latest()->paginate(5);
+    public function index(Request $request)
+    {   
+        $search = $request->get('search');
+        if($search && $search != ''){
+            $contacts = Contact::whereHas('phones', function($query) use ($search) {
+                $query->where('phone', 'like', '%'.$search.'%');
+            })
+            ->orWhere('name', 'like', '%'.$search.'%')
+            ->orWhere('email', 'like', '%'.$search.'%')
+            ->paginate(5);
+        }else{
+            $contacts = Contact::orderBy('id')->paginate(5);
+        }
         LogService::log(30, 'select', 'list all contacts');
-        return view('contacts.index',compact('contacts'))
+        return view('contacts.index',compact('contacts', 'search'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -140,10 +150,11 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        $contact->delete();
-
+    
         LogService::log(0, 'delete', 'destroy contact and phones of <b>' . $contact->name.'</b>');
 
+        $contact->delete();
+        
         return redirect()->route('contacts.index')
                         ->with('success','Contact deleted successfully');
     }

@@ -1,0 +1,1 @@
+<p class="text-center text-primary copying-right"><small>{{define_footer()}}</small></p>

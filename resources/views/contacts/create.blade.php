@@ -2,28 +2,14 @@
 
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Add New Contact</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
-            </div>
-        </div>
-    </div>
+    @include('layouts/page_header', 
+        ['title' => 'Create New Contact', 
+        'link' => route('contacts.index'), 
+        'link_title' => 'Back',
+        'icon' => 'fas fa-long-arrow-alt-left'])
 
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @include('layouts/error')
+    @include('layouts/success')
 
 
     <form action="{{ route('contacts.store') }}" method="POST">
@@ -35,18 +21,18 @@
 		            <input type="text" name="name" class="form-control" placeholder="Name">
 		        </div>
 		    </div>
-		    <div class="col-xs-12 col-sm-12 col-md-12">
+		    <div class="col-xs-12 col-sm-6 col-md-6">
 		        <div class="form-group">
                     <strong>Email:</strong>
                     <input type="email" name="email" class="form-control" placeholder="Email">
 		        </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-6 col-md-6">
 		        <div class="form-group">
                     <strong>Phone:</strong>
                     <div class="field_wrapper">
-                        <div class="input-group input-group-sm mb-3">
-                            <select class="custom-select" id="inputGroupSelect01" name="phone[1][type]">
+                        <div class="input-group input-group mb-3">
+                            <select class="custom-select mr-3" id="inputGroupSelect01" name="phone[1][type]">
                                 <option value="1">Phone</option>
                                 <option value="2">WhatsApp</option>
                             </select>
@@ -60,14 +46,14 @@
 		        </div>
             </div>
             
-		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-		            <button type="submit" class="btn btn-primary">Submit</button>
-		    </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center btn-save">
+                <button type="submit" class="btn btn-success btn-sm float-right">Save and continue</button>
+            </div>
+
 		</div>
 
 
     </form>
 
-
-<p class="text-center text-primary"><small>{{define_footer()}}</small></p>
+    @include('layouts/copying')
 @endsection

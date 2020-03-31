@@ -2,28 +2,15 @@
 
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Edit Role</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
-        </div>
-    </div>
-</div>
 
+@include('layouts/page_header', 
+        ['title' => 'Edit Role: <strong>'.$role->name.'</strong>', 
+        'link' => route('roles.index'), 
+        'link_title' => 'Back',
+        'icon' => 'fas fa-long-arrow-alt-left'])
 
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-        </ul>
-    </div>
-@endif
+@include('layouts/error')
+@include('layouts/success')
 
 
 {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
@@ -39,18 +26,19 @@
             <strong>Permission:</strong>
             <br/>
             @foreach($permission as $value)
-                <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
-                {{ $value->name }}</label>
-            <br/>
+            <div class="custom-control custom-checkbox">
+                {{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'custom-control-input', 'id'=>'permission'.$value->id)) }}
+                <label class="custom-control-label" for="permission{{$value->id}}">{{ $value->name }}</label>
+            </div>
             @endforeach
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center btn-save">
+        <button type="submit" class="btn btn-success btn-sm float-right">Save and continue</button>
     </div>
 </div>
 {!! Form::close() !!}
 
-
+@include('layouts/copying')
 @endsection
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>

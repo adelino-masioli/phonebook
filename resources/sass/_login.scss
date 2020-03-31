@@ -24,6 +24,7 @@
     color: #fff;
     margin-top: 40px;
     transition: transform .2s;
+    padding: 8px 70px 8px 70px;
 
     &:hover{
       color: #fff;
@@ -60,10 +61,11 @@
   }  
 
   & .btn{
+    padding: 8px 70px 8px 70px;
     transition: transform .2s;
 
     &:hover{
       transform: scale(1.1);
     }
-  }
+  }  
 }

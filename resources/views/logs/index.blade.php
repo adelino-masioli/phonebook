@@ -4,35 +4,28 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>All Logs</h2>
+            <div class="float-left">
+                <h2 class="title">All Logs</h2>
             </div>
         </div>
     </div>
 
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
-
     <table class="table table-bordered">
-        <tr>
-            <th>ID</th>
-            <th>User name</th>
-            <th>Action</th>
-            <th>Description</th>
-            <th>Created At</th>
+        <tr class="row m-0">
+            <th class="text-center text-uppercase d-inline-block col-1">ID</th>
+            <th class="text-center text-uppercase d-inline-block col-3">User name</th>
+            <th class="text-center text-uppercase d-inline-block col-2">Action</th>
+            <th class="text-center text-uppercase d-inline-block col-4">Description</th>
+            <th class="text-center text-uppercase d-inline-block col-2">Created At</th>
         </tr>
 	    @foreach ($logs as $log)
-	    <tr>
-	        <td>{{ $log->id }}</td>
-	        <td>{{ $log->user->name }}</td>
-	        <td>{{ $log->action }}</td>
-	        <td>{!! $log->description !!}</td>
-	        <td>{{ $log->created_at->format('d/m/Y H:i:s') }}</td>
+	    <tr class="row m-0">
+	        <td class="d-inline-block col-1">{{ $log->id }}</td>
+	        <td class="d-inline-block col-3">{{ $log->user->name }}</td>
+	        <td class="d-inline-block col-2">{{ $log->action }}</td>
+	        <td class="d-inline-block col-4">{!! $log->description !!}</td>
+	        <td class="d-inline-block col-2">{{ $log->created_at->format('d/m/Y H:i:s') }}</td>
 	    </tr>
 	    @endforeach
     </table>

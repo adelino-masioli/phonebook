@@ -1,77 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
-.col-left {
-  background-color: #1738f5;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  color: #fff;
-}
-
-.col-left h1 {
-  width: 80%;
-  margin-bottom: 40px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 2rem;
-}
-
-.col-left p {
-  font-size: 1rem;
-  text-align: center;
-}
-
-.col-left .btn {
-  border: 1px solid #fff;
-  color: #fff;
-  margin-top: 40px;
-  transition: transform 0.2s;
-}
-
-.col-left .btn:hover {
-  color: #fff;
-  transform: scale(1.1);
-}
-
-.col-right {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.col-right h1 {
-  width: 80%;
-  color: #1738f5;
-  margin-bottom: 40px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 2rem;
-}
-
-.col-right form {
-  width: 80%;
-}
-
-.col-right .login-bottom {
-  margin-top: 40px;
-}
-
-.col-right .login-bottom .btn-forgot-password {
-  margin-top: 40px;
-}
-
-.col-right .btn {
-  transition: transform 0.2s;
-}
-
-.col-right .btn:hover {
-  transform: scale(1.1);
-}
-
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -11025,9 +10953,190 @@ input:-internal-autofill-selected {
   padding-left: 18px;
 }
 
-.btn {
+a {
+  transition: color 1s;
+}
+
+.col-left {
+  background-color: #1738f5;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+}
+
+.col-left h1 {
+  width: 80%;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.col-left p {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.col-left .btn {
+  border: 1px solid #fff;
+  color: #fff;
+  margin-top: 40px;
+  transition: transform 0.2s;
   padding: 8px 70px 8px 70px;
+}
+
+.col-left .btn:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.col-right {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.col-right h1 {
+  width: 80%;
+  color: #1738f5;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.col-right form {
+  width: 80%;
+}
+
+.col-right .login-bottom {
+  margin-top: 40px;
+}
+
+.col-right .login-bottom .btn-forgot-password {
+  margin-top: 40px;
+}
+
+.col-right .btn {
+  padding: 8px 70px 8px 70px;
+  transition: transform 0.2s;
+}
+
+.col-right .btn:hover {
+  transform: scale(1.1);
+}
+
+.navbar-blue {
+  background-color: #1738f5;
+  padding: 1rem 1rem !important;
+}
+
+.navbar-blue a {
+  color: #fff;
+  padding: 0rem;
+}
+
+.navbar-blue a:hover {
+  color: #fff;
+}
+
+.navbar-blue a span {
+  position: relative;
+  top: 2px;
+  font-size: 16px;
+}
+
+.navbar-blue a.logout {
+  color: #54adf5;
+}
+
+.navbar-blue a.logout:hover {
+  color: #fff;
+}
+
+.navbar-brand {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1.325rem;
+  padding-top: 0rem;
+  padding-bottom: 20rem;
+}
+
+.navbar-brand span {
+  position: relative;
+  top: 8px;
+}
+
+.dashboard {
+  background-color: #fff;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.32);
+  padding: 30px 20px 20px 20px;
+}
+
+.dashboard .title {
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: 300;
+  font-size: 2rem;
+}
+
+.btn {
+  padding: 8px 40px 8px 40px;
   border-radius: 3rem;
   text-transform: uppercase;
+}
+
+.table th {
+  font-weight: 400;
+}
+
+.table .actions {
+  text-align: center;
+}
+
+.table .actions a {
+  margin: 0px 5px;
+  display: inline-block;
+}
+
+.table .actions form {
+  margin: 0px 5px;
+  display: inline-block;
+}
+
+.copying-right {
+  margin-top: 20px;
+}
+
+.form-group strong {
+  font-weight: 400;
+}
+
+.btn-save {
+  margin-top: 20px;
+}
+
+.alert {
+  border-radius: 0rem;
+  font-weight: 400;
+}
+
+.alert ul {
+  list-style: none;
+  margin-bottom: 0px;
+}
+
+.alert p {
+  margin-bottom: 0px;
+}
+
+.disabled {
+  opacity: 0.4;
 }
 

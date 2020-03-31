@@ -2,50 +2,43 @@
 
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Users Management</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
-        </div>
-    </div>
-</div>
 
+@include('layouts/page_header', 
+        ['title' => 'Users Management', 
+        'link' => route('users.create'), 
+        'link_title' => 'Create New User',
+        'icon' => 'fas fa-plus'])
 
-@if ($message = Session::get('success'))
-<div class="alert alert-success">
-  <p>{{ $message }}</p>
-</div>
-@endif
-
+@include('layouts/error')
+@include('layouts/success')
 
 <table class="table table-bordered">
- <tr>
-   <th>ID</th>
-   <th>Name</th>
-   <th>Email</th>
-   <th>Roles</th>
-   <th width="280px">Action</th>
+ <tr class="row m-0">
+   <th class="text-center text-uppercase d-inline-block col-1">ID</th>
+   <th class="text-center text-uppercase d-inline-block col-3">Name</th>
+   <th class="text-center text-uppercase d-inline-block col-3">Email</th>
+   <th class="text-center text-uppercase d-inline-block col-3">Roles</th>
+   <th class="text-center text-uppercase d-inline-block col-2 actions">Action</th>
  </tr>
  @foreach ($data as $key => $user)
-  <tr>
-    <td>{{ $user->id }}</td>
-    <td>{{ $user->name }}</td>
-    <td>{{ $user->email }}</td>
-    <td>
+  <tr class="row m-0">
+    <td class="text-center d-inline-block col-1">{{ $user->id }}</td>
+    <td class="d-inline-block col-3">{{ $user->name }}</td>
+    <td class="d-inline-block col-3">{{ $user->email }}</td>
+    <td class="d-inline-block col-3">
       @if(!empty($user->getRoleNames()))
         @foreach($user->getRoleNames() as $v)
-           <label class="badge badge-success">{{ $v }}</label>
+           <label class="badge badge-success mb-0">{{ $v }}</label>
         @endforeach
       @endif
     </td>
-    <td>
-       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-       <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-        {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+    <td class="d-inline-block col-2 actions">
+       <a class="text-secondary" href="{{ route('users.show',$user->id) }}"><i class="fas fa-search"></i></a>
+       <a class="text-secondary" href="{{ route('users.edit',$user->id) }}"><i class="fas fa-pen"></i></a>
+        {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'id'=>'form-delete'.$user->id]) !!}
+        <a class="text-danger" href="javascript:void(0)" onclick="$('#form-delete{{$user->id}}').submit();">
+          <i class="fas fa-trash"></i>
+        </a>
         {!! Form::close() !!}
     </td>
   </tr>
@@ -56,5 +49,6 @@
 {!! $data->render() !!}
 
 
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
+@include('layouts/copying')
+
 @endsection
