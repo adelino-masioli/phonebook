@@ -39,10 +39,11 @@ class ContactController extends Controller
             ->orWhere('name', 'like', '%'.$search.'%')
             ->orWhere('email', 'like', '%'.$search.'%')
             ->paginate(5);
+            LogService::log(30, 'select', 'filter to contact with: <strong>'.$search.'</strong>');
         }else{
             $contacts = Contact::orderBy('id')->paginate(5);
+            LogService::log(30, 'select', 'list all contacts');
         }
-        LogService::log(30, 'select', 'list all contacts');
         return view('contacts.index',compact('contacts', 'search'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }

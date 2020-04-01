@@ -35,10 +35,17 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::orderBy('id')->paginate(5);
-        LogService::log(30, 'select', 'list all roles');
-
-        return view('roles.index',compact('roles'))
+        $search = $request->get('search');
+        if($search && $search != ''){
+            $roles = Role::where('name', 'like', '%'.$search.'%')
+            ->orderBy('id')
+            ->paginate(5);
+            LogService::log(30, 'select', 'filter to role with: <strong>'.$search.'</strong>');
+        }else{
+            $roles = Role::orderBy('id')->paginate(5);
+            LogService::log(30, 'select', 'list all roles');
+        }
+        return view('roles.index',compact('roles', 'search'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -160,5 +167,16 @@ class RoleController extends Controller
 
         return redirect()->route('roles.index')
                         ->with('success','Role deleted successfully');
+    }
+
+
+    /**
+     * Display page unauthorized.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function unauthorized(Request $request)
+    {
+        return view('roles.unauthorized');
     }
 }

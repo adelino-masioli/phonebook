@@ -10,13 +10,13 @@ $(document).ready(function(){
       if(x < maxField){ 
           x++;
           $(wrapper).append('<div class="input-group input-group mb-3">\
-            <select class="custom-select mr-3" id="inputGroupSelect01" name="phone['+ i +'][type]">\
+            <select class="custom-select mr-3 mr-3 border-radius" id="inputGroupSelect01" name="phone['+ i +'][type]">\
                 <option value="1">Phone</option>\
                 <option value="2">WhatsApp</option>\
             </select>\
-            <input type="text" class="form-control" name="phone['+ i +'][phone]" placeholder="Phone number">\
+            <input type="text" class="form-control no-border-radius-right" name="phone['+ i +'][phone]" placeholder="Phone number">\
             <div class="input-group-prepend">\
-                 <span class="input-group-text remove_button">[X]</span>\
+                 <span class="input-group-text remove_button button-group">[X]</span>\
             </div>\
             </div>'
           );

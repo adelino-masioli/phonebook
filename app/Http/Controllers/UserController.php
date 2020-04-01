@@ -19,9 +19,20 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id')->paginate(5);
+        $search = $request->get('search');
+        if($search && $search != ''){
+            $users =  User::where('name', 'like', '%'.$search.'%')
+            ->orWhere('email', 'like', '%'.$search.'%')
+            ->orderBy('id')
+            ->paginate(5);
+            LogService::log(30, 'select', 'filter to user with: <strong>'.$search.'</strong>');
+        }else{
+            $users = User::orderBy('id')->paginate(5);
+            LogService::log(30, 'select', 'list all users');
+        }
+
         LogService::log(30, 'select', 'list all users');
-        return view('users.index',compact('data'))
+        return view('users.index',compact('users', 'search'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

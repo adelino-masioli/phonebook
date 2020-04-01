@@ -11,6 +11,12 @@
     </div>
 
 
+    @include('layouts/search', ['url' => route('logs.index'),
+        'placeholder' => 'Enter with User Name or Action or Description'
+        ])
+
+
+
     <table class="table table-bordered">
         <tr class="row m-0">
             <th class="text-center text-uppercase d-inline-block col-1">ID</th>
@@ -19,15 +25,23 @@
             <th class="text-center text-uppercase d-inline-block col-4">Description</th>
             <th class="text-center text-uppercase d-inline-block col-2">Created At</th>
         </tr>
-	    @foreach ($logs as $log)
-	    <tr class="row m-0">
-	        <td class="d-inline-block col-1">{{ $log->id }}</td>
-	        <td class="d-inline-block col-3">{{ $log->user->name }}</td>
-	        <td class="d-inline-block col-2">{{ $log->action }}</td>
-	        <td class="d-inline-block col-4">{!! $log->description !!}</td>
-	        <td class="d-inline-block col-2">{{ $log->created_at->format('d/m/Y H:i:s') }}</td>
-	    </tr>
-	    @endforeach
+	    @if ($logs->count() > 0)
+            @foreach ($logs as $log)
+            <tr class="row m-0">
+                <td class="d-inline-block col-1">{{ $log->id }}</td>
+                <td class="d-inline-block col-3">{{ $log->user->name }}</td>
+                <td class="d-inline-block col-2">{{ $log->action }}</td>
+                <td class="d-inline-block col-4">{!! $log->description !!}</td>
+                <td class="d-inline-block col-2">{{ $log->created_at->format('d/m/Y H:i:s') }}</td>
+            </tr>
+            @endforeach
+        @else
+            <tr>
+                <td class="text-center d-inline-block col-12">
+                    No results found to: <strong>{{$search}}</strong>
+                </td>
+            </tr>
+        @endif
     </table>
 
 

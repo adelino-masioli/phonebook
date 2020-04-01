@@ -11,18 +11,11 @@
     @include('layouts/error')
     @include('layouts/success')
 
-    <div class="card">
-        <div class="card-body">
-        <form action="{{route('contacts.index')}}" method="GET">
-                <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Enter with Name, Email or Phone" name="search" aria-label="search" aria-describedby="basic-addon1" value="{{$search}}">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    @include('layouts/search', ['url' => route('contacts.index'),
+        'placeholder' => 'Enter with Name or Email or Phone'
+        ])
+
+
 
 
     <table class="table table-bordered">
@@ -33,6 +26,7 @@
             <th class="text-center text-uppercase d-inline-block col-2">Phone</th>
             <th class="text-center text-uppercase d-inline-block col-2 actions">Actions</th>
         </tr>
+        @if($contacts->count() > 0)
 	    @foreach ($contacts as $contact)
 	    <tr class="row m-0">
 	        <td class="text-center d-inline-block col-1">{{ $contact->id }}</td>
@@ -61,7 +55,14 @@
                 </form>
 	        </td>
 	    </tr>
-	    @endforeach
+        @endforeach
+        @else
+            <tr>
+                <td class="text-center d-inline-block col-12">
+                    No results found to: <strong>{{$search}}</strong>
+                </td>
+            </tr>
+        @endif
     </table>
 
 

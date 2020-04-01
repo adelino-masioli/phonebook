@@ -10957,6 +10957,33 @@ a {
   transition: color 1s;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
+*:hover,
+*:focus,
+*:active {
+  outline: none;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+}
+
+.form-control,
+.border-radius {
+  border-radius: 18px !important;
+}
+
+.no-border-radius-right {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.button-group {
+  border-top-right-radius: 18px !important;
+  border-bottom-right-radius: 18px !important;
+}
+
 .col-left {
   background-color: #1738f5;
   height: 100vh;
@@ -11138,5 +11165,21 @@ a {
 
 .disabled {
   opacity: 0.4;
+}
+
+.search-form .form-control {
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
+}
+
+.title-unauthorized {
+  font-size: 11rem;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.subtitle-unauthorized {
+  font-size: 1.3rem;
+  text-align: center;
 }
 

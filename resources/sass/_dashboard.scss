@@ -101,7 +101,23 @@
   }
 }
 
-
 .disabled{
   opacity: 0.4;
+}
+
+.search-form{
+  & .form-control{
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+  }
+}
+
+.title-unauthorized{
+  font-size: 11rem;
+  text-align: center;
+  margin-bottom: 0px;
+}
+.subtitle-unauthorized{
+  font-size: 1.3rem;
+  text-align: center;
 }
