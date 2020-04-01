@@ -11058,7 +11058,8 @@ a:hover {
   transform: scale(1.1);
 }
 
-.col-right .btn-sign-up {
+.col-right .btn-sign-up,
+.col-right .btn-reset-password {
   margin-top: 20px;
 }
 
