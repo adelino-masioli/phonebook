@@ -21,13 +21,13 @@
 		            <input type="text" name="name" class="form-control" placeholder="Name">
 		        </div>
 		    </div>
-		    <div class="col-xs-12 col-sm-6 col-md-6">
+		    <div class="col-12 col-sm-6 col-md-6">
 		        <div class="form-group">
                     <strong>Email:</strong>
                     <input type="email" name="email" class="form-control" placeholder="Email">
 		        </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="col-12 col-sm-6 col-md-6">
 		        <div class="form-group">
                     <strong>Phone:</strong>
                     <div class="field_wrapper">

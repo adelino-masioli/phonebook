@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-search">
   <div class="card-body">
       <form action="{{$url}}" method="GET" class="search-form">
           <div class="input-group">

@@ -17,29 +17,29 @@
 
 
 
-
+<div class="table-responsive">
     <table class="table table-bordered">
         <tr class="row m-0">
-            <th class="text-center text-uppercase d-inline-block col-1">ID</th>
-            <th class="text-center text-uppercase d-inline-block col-4">Name</th>
-            <th class="text-center text-uppercase d-inline-block col-3">Email</th>
-            <th class="text-center text-uppercase d-inline-block col-2">Phone</th>
-            <th class="text-center text-uppercase d-inline-block col-2 actions">Actions</th>
+            <th class="text-center text-uppercase d-inline-block col-12 col-md-1">ID</th>
+            <th class="text-center text-uppercase d-inline-block col-12 col-md-3">Name</th>
+            <th class="text-center text-uppercase d-inline-block col-12 col-md-3">Email</th>
+            <th class="text-center text-uppercase d-inline-block col-12 col-md-3">Phone</th>
+            <th class="text-center text-uppercase d-inline-block col-12 col-md-2 actions">Actions</th>
         </tr>
         @if($contacts->count() > 0)
 	    @foreach ($contacts as $contact)
 	    <tr class="row m-0">
-	        <td class="text-center d-inline-block col-1">{{ $contact->id }}</td>
-	        <td class="d-inline-block col-4">{{ $contact->name }}</td>
-	        <td class="d-inline-block col-3">{{ $contact->email }}</td>
-	        <td class="d-inline-block col-2">
+	        <td class="text-center d-inline-block col-12 col-md-1 align-baseline">{{ $contact->id }}</td>
+	        <td class="d-inline-block col-12 col-md-3">{{ $contact->name }}</td>
+	        <td class="d-inline-block col-12 col-md-3">{{ $contact->email }}</td>
+	        <td class="d-inline-block col-12 col-md-3">
                 <a href="{{href_phone($contact->get_first_phone($contact->id)['type'], $contact->get_first_phone($contact->id)['phone'])}}" target="_blank">
                     {!!icon_phone($contact->get_first_phone($contact->id)['type'])!!} {{ $contact->get_first_phone($contact->id)['phone'] }}
                 </a>
-            </td>
-	        <td class="d-inline-block col-2 actions">
+	        </td>
+	        <td class="d-inline-block col-12 col-md-2 actions">
             <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST" id="form-delete{{$contact->id}}">
-                    <a class="text-secondary" href="{{ route('contacts.show',$contact->id) }}"><i class="fas fa-search"></i></a>
+                    <a class="text-secondary" href="{{ route('contacts.show',$contact->id) }}"><i class="far fa-eye"></i></a>
                     @can('contact-edit')
                     <a class="text-secondary" href="{{ route('contacts.edit',$contact->id) }}"><i class="fas fa-pen"></i></a>
                     @endcan
@@ -64,6 +64,7 @@
             </tr>
         @endif
     </table>
+</div>
 
 
     {!! $contacts->links() !!}

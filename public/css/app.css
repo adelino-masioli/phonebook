@@ -11119,22 +11119,44 @@ a:hover {
   text-transform: uppercase;
 }
 
+.table {
+  font-size: 14px;
+}
+
+.table tr {
+  border-left: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+
 .table th {
   font-weight: 400;
+  border-left: 0px;
+  border-bottom: 0px;
+}
+
+.table td {
+  border-bottom: 0px;
+  border-top: 0px;
+  border-left: 0px;
 }
 
 .table .actions {
+  position: relative;
   text-align: center;
 }
 
 .table .actions a {
-  margin: 0px 5px;
   display: inline-block;
+  padding: 2px;
 }
 
 .table .actions form {
   margin: 0px 5px;
   display: inline-block;
+}
+
+.table .actions i {
+  font-size: 14px;
 }
 
 .copying-right {
@@ -11167,6 +11189,13 @@ a:hover {
   opacity: 0.4;
 }
 
+.card-search {
+  margin-bottom: 20px;
+  border-radius: 0px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 7px 5px -5px rgba(0, 0, 0, 0.18);
+}
+
 .search-form .form-control {
   border-top-left-radius: 18px;
   border-bottom-left-radius: 18px;
@@ -11181,5 +11210,57 @@ a:hover {
 .subtitle-unauthorized {
   font-size: 1.3rem;
   text-align: center;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: none;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+}
+
+.navbar-toggler i {
+  color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+  .display-none {
+    display: none !important;
+  }
+
+  .btn-round {
+    padding: 10px;
+  }
+
+  .table tr {
+    border-left: 1px solid #dee2e6;
+    border-bottom: 0px solid #dee2e6;
+  }
+
+  .table tr:first-child {
+    border-top: 1px solid #dee2e6;
+  }
+
+  .table th {
+    border-left: 0px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    border-top: 0px solid #dee2e6;
+    background-color: #f9f9f9;
+  }
+
+  .table td {
+    border-bottom: 1px solid #dee2e6;
+    border-top: 0px solid #dee2e6;
+    border-left: 0px solid #dee2e6;
+  }
+
+  .navbar-nav {
+    margin-top: 5px;
+  }
+
+  .navbar-nav li {
+    padding: 5px 0px;
+  }
 }
 
