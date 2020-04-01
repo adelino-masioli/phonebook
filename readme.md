@@ -1,71 +1,55 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Phone Book
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Project developed with PHP / Laravel 5.8, with the implementation of a Roles and Permissions authentication system, which allows the creation of new user accounts, login and password recovery.
+This application is intended to support other developers who need to quickly create modules with different levels of authentication and which can manage through a control panel.
+Below is how to install and run locally or on a remote server.
 
-## About Laravel
+# Installation Instructions
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```
+PHP >= 7.2.5
+BCMath PHP Extension
+Ctype PHP Extension
+Fileinfo PHP extension
+JSON PHP Extension
+Mbstring PHP Extension
+OpenSSL PHP Extension
+PDO PHP Extension
+Tokenizer PHP Extension
+XML PHP Extension
+NodeJS
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* Laravel utilizes [Composer](https://getcomposer.org/) to manage its dependencies. 
 
-## Learning Laravel
+* I always recommend using [Laradock](https://laradock.io/), as it is faster and easier to create a Laravel environment.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+# Instalação
+* First make the application clone in an already configured environment. git clone https://github.com/alfjuniorbh/phonebook
+* After cloning the application, to rename the directory just execute the command: mv master phonebook
+* To access the application just type: cd phonebook
+* Some dependencies need to be installed, for this: composer install
+* Assets need to be compiled, so the commands: npm install so that all dependencies are satisfied
+* The time has come for migrations: php artisan migrate
+* The first load of data is ready to be inserted into the system: php artisan db: seed
+* Ready, just upload the server with the command (if Docker / Laradock is not configured): php artisan serve
+* The default data for the Administrator are: adelinomasioli@gmail.com / 123456
+* Enjoy
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# Below are some prints of the application pages
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![Login Page](/public/images/github/1.png)
+![Register Page](/public/images/github/2.png)
+![Reset Passoword Page](/public/images/github/3.png)
+![Contacts Page](/public/images/github/4.png)
+![Create New Contact Page](/public/images/github/5.png)
+![Edit Contact Page](/public/images/github/6.png)
+![Users Page](/public/images/github/7.png)
+![Create New User Page](/public/images/github/8.png)
+![Roles Page](/public/images/github/9.png)
+![Create New Role Page](/public/images/github/10.png)
+![Logs Page](/public/images/github/11.png)
