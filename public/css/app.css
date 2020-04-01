@@ -11063,6 +11063,17 @@ a:hover {
   margin-top: 20px;
 }
 
+.col-right .brand {
+  float: left;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.col-right .brand img {
+  width: 80px;
+}
+
 .navbar-blue {
   background-color: #1738f5;
   padding: 1rem 1rem !important;

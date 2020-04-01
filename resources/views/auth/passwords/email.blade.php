@@ -17,6 +17,8 @@
         </div>
     
         <div class="col-md-5 col-right">
+            <div class="brand"><img src="{{asset('images/brand.png')}}" alt="{{ config('app.name', 'Phone Book') }}"></div>
+            
             <h1> {{ __('Reset Password') }}</h1>
 
                     @if (session('status'))

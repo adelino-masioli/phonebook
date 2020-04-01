@@ -18,6 +18,7 @@
 
         <div class="col-md-5 col-right">
 
+            <div class="brand"><img src="{{asset('images/brand.png')}}" alt="{{ config('app.name', 'Phone Book') }}"></div>
             <h1> {{ __('Sign in to Phone Book') }}</h1>
 
             <form method="POST" action="{{ route('login') }}" autocomplete="off">

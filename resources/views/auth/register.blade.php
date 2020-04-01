@@ -4,6 +4,8 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-5 col-right">
+
+            <div class="brand"><img src="{{asset('images/brand.png')}}" alt="{{ config('app.name', 'Phone Book') }}"></div>
             
             <h1> {{ __('Create Account') }}</h1>
 
