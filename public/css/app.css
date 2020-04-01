@@ -11058,6 +11058,10 @@ a:hover {
   transform: scale(1.1);
 }
 
+.col-right .btn-sign-up {
+  margin-top: 20px;
+}
+
 .navbar-blue {
   background-color: #1738f5;
   padding: 1rem 1rem !important;

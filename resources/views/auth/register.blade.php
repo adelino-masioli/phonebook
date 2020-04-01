@@ -1,21 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+        <div class="col-md-5 col-right">
+            
+            <h1> {{ __('Create Account') }}</h1>
 
-                <div class="card-body">
+
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                            <div class="col-md-12">
+                                <div class="form-wrapper">
+                                    <i class="fa fa-user form-wrapper_icon"></i>
+                                    <input   placeholder="{{ __('Name') }}"  type="text" class="form-wrapper_input" name="name" value="{{ old('name') }}" required autofocus autocomplete="off">
+                                </div>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -26,51 +27,67 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
+                            <div class="col-md-12">
+                                <div class="form-wrapper">
+                                    <i class="fa fa-envelope form-wrapper_icon"></i>
+                                    <input   placeholder="{{ __('E-Mail Address') }}"  type="email" class="form-wrapper_input" name="email" value="{{ old('email') }}" required  autocomplete="off">
+                                </div>
+        
+                               
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        {{ $errors->first('email') }}
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                            <div class="col-md-12">
+                                <div class="form-wrapper">
+                                    <i class="fa fa-lock form-wrapper_icon"></i>
+                                    <input  placeholder="{{ __('Password') }}" type="password" class="form-wrapper_input" name="password" required autocomplete="off">
+                                </div>
+        
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        {{ $errors->first('password') }}
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="col-md-12">
+                                <div class="form-wrapper">
+                                    <i class="fa fa-lock form-wrapper_icon"></i>
+                                    <input  placeholder="{{ __('Confirm Password') }}"  type="password" class="form-wrapper_input" name="password_confirmation" required autocomplete="off">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                        <div class="form-group row">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-sign-up">
+                                    {{ __('Sign up') }}
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>
+        </div>
+   
+
+        <div class="col-md-7 col-left">
+            <h1> {{ __('Hi, Welcome back!') }}</h1>
+            
+            <div class="description">
+                <p>To keep connected please</p>
+                <p>login with your personal info</p>
             </div>
+
+            <a class="btn" href="{{ route('login') }}">
+                {{ __('Sign in') }}
+            </a>
         </div>
     </div>
 </div>
