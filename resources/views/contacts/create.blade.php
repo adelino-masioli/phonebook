@@ -18,13 +18,13 @@
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
 		            <strong>Name:</strong>
-		            <input type="text" name="name" class="form-control" placeholder="Name">
+		            <input type="text" name="name" class="form-control" placeholder="Name" required>
 		        </div>
 		    </div>
 		    <div class="col-12 col-sm-6 col-md-6">
 		        <div class="form-group">
                     <strong>Email:</strong>
-                    <input type="email" name="email" class="form-control" placeholder="Email">
+                    <input type="email" name="email" class="form-control" placeholder="Email" required>
 		        </div>
             </div>
             <div class="col-12 col-sm-6 col-md-6">
@@ -32,12 +32,12 @@
                     <strong>Phone:</strong>
                     <div class="field_wrapper">
                         <div class="input-group input-group mb-3">
-                            <select class="custom-select mr-3 border-radius" id="inputGroupSelect01" name="phone[1][type]">
+                            <select class="custom-select mr-3 border-radius" id="inputGroupSelect01" name="phone[1][type]" required>
                                 <option value="1">Phone</option>
                                 <option value="2">WhatsApp</option>
                             </select>
 
-                            <input type="text" class="form-control no-border-radius-right" name="phone[1][phone]" placeholder="Phone number">
+                            <input type="text" class="form-control no-border-radius-right" name="phone[1][phone]" placeholder="Phone number" required>
                             <div class="input-group-prepend">
                                 <span class="input-group-text add_button button-group">[+]</span>
                             </div>

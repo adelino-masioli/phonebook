@@ -20,13 +20,13 @@
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
 		            <strong>Name:</strong>
-		            <input type="text" name="name" value="{{ $contact->name }}" class="form-control" placeholder="Name">
+		            <input type="text" name="name" value="{{ $contact->name }}" class="form-control" placeholder="Name" required>
 		        </div>
 		    </div>
 		    <div class="col-xs-12 col-sm-6 col-md-6">
 		        <div class="form-group">
                     <strong>Email:</strong>
-                    <input type="email" name="email" class="form-control" placeholder="Email" value="{{ $contact->email }}">
+                    <input type="email" name="email" class="form-control" placeholder="Email" value="{{ $contact->email }}" required>
 		        </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
@@ -35,12 +35,12 @@
                     <div class="field_wrapper">
 
                         <div class="input-group input-group mb-3">
-                            <select class="custom-select mr-3 border-radius" id="inputGroupSelect01" name="phone[1][type]">
+                            <select class="custom-select mr-3 border-radius" id="inputGroupSelect01" name="phone[1][type]" required>
                                 <option value="1" @if($contact->get_first_phone($contact->id)['type'] == 1) selected @endif >Phone</option>
                                 <option value="2" @if($contact->get_first_phone($contact->id)['type'] == 2) selected @endif >WhatsApp</option>
                             </select>
 
-                            <input type="text" class="form-control no-border-radius-right" name="phone[1][phone]" placeholder="Phone number" value="{{ $contact->get_first_phone($contact->id)['phone'] }}">
+                            <input type="text" class="form-control no-border-radius-right" name="phone[1][phone]" placeholder="Phone number" value="{{ $contact->get_first_phone($contact->id)['phone'] }}" required>
                             <div class="input-group-prepend">
                                 <span class="input-group-text add_button button-group">[+]</span>
                             </div>
@@ -48,12 +48,12 @@
 
                         @foreach ($contact->get_all_phones($contact->id, null) as $phone)
                             <div class="input-group input-group mb-3">
-                                <select class="custom-select mr-3 border-radius" id="inputGroupSelect01" name="phone[{{$phone->id}}][type]">
+                                <select class="custom-select mr-3 border-radius" id="inputGroupSelect01" name="phone[{{$phone->id}}][type]" required>
                                     <option value="1" @if($phone->type == 1) selected @endif >Phone</option>
                                     <option value="2" @if($phone->type == 2) selected @endif >WhatsApp</option>
                                 </select>
 
-                                <input type="text" class="form-control no-border-radius-right" name="phone[{{$phone->id}}][phone]" placeholder="Phone number" value="{{ $phone->phone }}">
+                                <input type="text" class="form-control no-border-radius-right" name="phone[{{$phone->id}}][phone]" placeholder="Phone number" value="{{ $phone->phone }}" required>
                                 <div class="input-group-prepend">
                                     <span class="input-group-text remove_button button-group">[X]</span>
                                 </div>
