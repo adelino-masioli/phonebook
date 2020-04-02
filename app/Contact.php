@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     protected $fillable = [
-        'name', 'email'
+        'user_id', 'name', 'email'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
     public function phones()
     {

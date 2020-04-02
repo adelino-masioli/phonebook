@@ -32,16 +32,18 @@ class ContactController extends Controller
     public function index(Request $request)
     {   
         $search = $request->get('search');
+        $user_id = \Auth::user()->id;
         if($search && $search != ''){
             $contacts = Contact::whereHas('phones', function($query) use ($search) {
                 $query->where('phone', 'like', '%'.$search.'%');
             })
             ->orWhere('name', 'like', '%'.$search.'%')
             ->orWhere('email', 'like', '%'.$search.'%')
+            ->where('user_id', $user_id)
             ->paginate(5);
             LogService::log(30, 'select', 'filter to contact with: <strong>'.$search.'</strong>');
         }else{
-            $contacts = Contact::orderBy('id')->paginate(5);
+            $contacts = Contact::where('user_id', $user_id)->orderBy('id')->paginate(5);
             LogService::log(30, 'select', 'list all contacts');
         }
         return view('contacts.index',compact('contacts', 'search'))
@@ -74,7 +76,7 @@ class ContactController extends Controller
             'email' => 'required',
         ]);
 
-
+       $request['user_id'] = \Auth::user()->id;
        $contact = Contact::create($request->all());
 
 
@@ -130,7 +132,7 @@ class ContactController extends Controller
             'email' => 'required',
         ]);
 
-
+        $request['user_id'] = \Auth::user()->id;
         $contact->update($request->all());
 
         $phones = $request->phone;

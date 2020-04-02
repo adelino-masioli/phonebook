@@ -25,8 +25,10 @@ class Phone extends Model
                 $phone_['phone']      = $item['phone'];
                 $phone_['type']       = $item['type'];
 
-                $phone = new Phone($phone_);
-                $phone->save();
+                if($item['phone']){
+                    $phone = new Phone($phone_);
+                    $phone->save();
+                }
 
         }
     }
