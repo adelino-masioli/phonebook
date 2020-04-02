@@ -33,9 +33,9 @@
 	        <td class="d-inline-block col-12 col-md-3">{{ $contact->name }}</td>
 	        <td class="d-inline-block col-12 col-md-3">{{ $contact->email }}</td>
 	        <td class="d-inline-block col-12 col-md-3">
-                <a href="{{href_phone($contact->get_first_phone($contact->id)['type'], $contact->get_first_phone($contact->id)['phone'])}}" target="_blank">
-                    {!!icon_phone($contact->get_first_phone($contact->id)['type'])!!} {{ $contact->get_first_phone($contact->id)['phone'] }}
-                </a>
+                {!!href_phone($contact->get_first_phone($contact->id)['type'], $contact->get_first_phone($contact->id)['phone'])!!}
+
+                {{ $contact->get_first_phone($contact->id)['phone'] }}
 	        </td>
 	        <td class="d-inline-block col-12 col-md-2 actions">
             <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST" id="form-delete{{$contact->id}}">
